@@ -1,0 +1,155 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pdb-exceptions
+  namespace: sre
+data:
+  exceptions.yaml: |
+    # airflow:
+    #   - "*"
+    # # analytics:
+    # #   - "*"
+    # app:
+    #   - "*"
+    # arc-runners:
+    #   - "*"
+    # arc-systems:
+    #   - "*"
+    # argo-rollouts:
+    #   - "*"
+    # argocd:
+    #   - "*"
+    campaigns:
+      - vmagent-campaigns 
+      - vmalert-infra-campaigns  
+      - vmalert-campaigns   
+      - vminsert-campaigns
+      - vmselect-campaigns   
+      - vmstorage-campaigns
+    # castai-agent:
+    #   - "*"
+    # cert-manager:
+    #   - "*"
+    # cilium-monitoring:
+    #   - "*"
+    # coroot:
+    #   - "*"
+    # csi-secrets:
+    #   - "*"
+    # custom-metrics:
+    #   - "*"
+    # data:
+    #   - "*"
+    # data-platform:
+    #   - "*"
+    # data-science:
+    #   - "*"
+    # datawarehouse:
+    #   - "*"
+    # deepfence:
+    #   - "*"
+    # default:
+    #   - "*"
+    # deploy-sanity:
+    #   - "*"
+    # dpm:
+    #   - "*"
+    # elastic-system:
+    #   - "*"
+    # envoy:
+    #   - "*"
+    # external-secrets:
+    #   - "*"
+    # flink-operator:
+    #   - "*"
+    # flink-operator-system:
+    #   - "*"
+    # github-actions:
+    #   - "*"
+    # goldilocks:
+    #   - "*"
+    # harness-delegate-ng:
+    #   - "*"
+    # iam:
+    #   - "*"
+    # inapps:
+    #   - "*"
+    # inform:
+    #   - "*"
+    # jenkins-testngbz4:
+    #   - "*"
+    # karpenter:
+    #   - "*"
+    # keda:
+    #   - "*"
+    # kube-node-lease:
+    #   - "*"
+    # kube-public:
+    #   - "*"
+    kube-system:
+      - "*"
+    # kubecost:
+    #   - "*"
+    # kubecost-cloud:
+    #   - "*"
+    # kubeshark:
+    #   - "*"
+    # kubesphere-controls-system:
+    #   - "*"
+    # kubesphere-devops-system:
+    #   - "*"
+    # kubesphere-monitoring-federated:
+    #   - "*"
+    # kubesphere-system:
+    #   - "*"
+    # newrelic:
+    #   - "*"
+    # olm:
+    #   - "*"
+    # opencost:
+    #   - "*"
+    # opentelemetry-operator-system:
+    #   - "*"
+    # pi:
+    #   - "*"
+    # pl:
+    #   - "*"
+    platform:
+      - vmagent-mongovmagent
+      - vmagent-platform
+      - vmalert-platform
+      - vminsert-platform
+      - vmselect-platform      
+      - vmstorage-platform
+    # plc:
+    #   - "*"
+    # poc:
+    #   - "*"
+    # productanalytics:
+    #   - "*"
+    # px-operator:
+    #   - "*"
+    # seg-spark-operator:
+    #   - "*"
+    # segmentation:
+    #   - "*"
+    # sentry-pro:
+    #   - "*"
+    sre:
+      - "*"
+    # srepoc:
+    #   - "*"
+    # tempo-test:
+    #   - "*"
+    # testvalidatingwebhook:
+    #   - "*"
+    # twistlock:
+    #   - "*"
+    # vm-operator:
+    #   - "*"
+    # vpa:
+    #   - "*"
+    # woodpecker:
+    #   - "*"
+    # zookeeper:
+    #   - "*"

@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pdb-removal
+  namespace: sre
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 1  # Or set to 0 to not keep any history of successful jobs
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 3    
+      template:
+        spec:
+          serviceAccountName: pdb-manager
+          nodeSelector:
+            eks.moengage.io/lifecycle: spot
+            kubernetes.io/arch: arm64
+          tolerations:
+          - effect: NoSchedule
+            key: arch
+            operator: Equal
+            value: arm64               
+          containers:
+          - name: pdb-removal
+            image: 582272135730.dkr.ecr.ap-south-1.amazonaws.com/sre/pdb-removal:2
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: EXCEPTIONS_CONFIGMAP_PATH
+                value: /config/exceptions.yaml
+            resources:
+              requests:
+                memory: "32Mi"
+                cpu: "16m"
+              limits:
+                memory: "64Mi"
+                cpu: "32m"
+            volumeMounts:
+              - name: config-volume
+                mountPath: /config
+          volumes:
+            - name: config-volume
+              configMap:
+                defaultMode: 0200
+                name: pdb-exceptions
+          restartPolicy: OnFailure
